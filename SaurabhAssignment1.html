@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title> 
+
+	<style type="text/css">
+
+	 	*{margin: 0;padding: 0;box-sizing: border-box;}
+		   body{background-color: white;}
+		  .Maincontainer{border: 2px solid black;background-color:white;display: flex;justify-content: center;margin:auto;width:1000px}
+      :focus{background: white;color: black; }
+		  .formArrnge{display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;justify-content: center;}
+		  label,button{margin: 10px 0px;font-size: 20px;color: black;}
+		  input{padding: 6px 15px;background-color: white;color: yellow;border: 2px solid green;}
+		  button:hover{background: red;color: black;}
+		  button{padding: 4px 110px;color: black;margin-top: 40px}
+		  #UserErrHtml,#PhoneErrHtml,#EmailErrHtml,#subErrorHtml,#PassErrHtml,#ConfirmPassErrHtml{ margin-top: 3px;font-family: cursive; font-size: larger; color: #ee0611;margin-left: 40px}  
+		  .wrapper{display: flex;justify-content: center;margin-top: 100px}
+		  .imageDiv img{width: 400px; }
+	</style>
+
+</head>
+<body>
+ 
+ <div class="wrapper">
+	 <div class="Maincontainer">
+	    <form class="formArrnge" onsubmit=" return validateForm()" action="welcomePage.html">
+          <table>
+              <tr>
+             	   <td>	 <label for="userNameHtml"> UserName </label></td>
+             	   <td><input type="text" onkeyup="validateName()" id="userNameHtml" placeholder="Enter your Username Here" ></td>
+             	   <td>  <div id="UserErrHtml"></div></td>
+              </tr>
+               <tr>
+             	   <td>	<label for="userNumberHtml"> Number </label> </td>
+             	   <td><input type="number" onkeyup=" validatePhone()" id="userNumberHtml" placeholder="Enter your PhoneNo Here" ></td>
+             	   <td>   <div id="PhoneErrHtml"></div></td>
+              </tr>
+               <tr>
+             	   <td>	 	 <label for="userEmailHtml"> Email </label> </td>
+             	   <td><input type="email" id="userEmailHtml" placeholder="Enter your Email Here" onkeyup="validateEmail()"></td>
+             	   <td>   <div id="EmailErrHtml"></div> </td>
+              </tr>
+               <tr>
+             	   <td>	 <label for="userPassHtml" onclick="iko()"> Password </label>  </td>
+             	   <td><input type="Password" id="userPassHtml" placeholder="Enter your Password Here" onkeyup="validatePass()"></td>
+             	   <td>   <div id="PassErrHtml"></div> </td>
+              </tr>
+               <tr>
+             	   <td>	  <label for="userConfirmPassHtml" >Confirm Password </label>  </td>
+             	   <td><input type="Password" id="userConfirmPassHtml" placeholder="Enter your Password Here" onkeyup="validateConfirmPass()"></td>
+             	   <td>  <div id="ConfirmPassErrHtml" ></div></td>
+              </tr>
+              <tr>
+              	 <td> <button  >Submit</button></td> 
+              </tr>
+              <tr><td> <div id="subErrorHtml"></div></td></tr>
+         </table>
+        </form>
+  	  </div> 
+ 
+	  <div class="imageDiv">
+  	  			 <img src="https://i.pinimg.com/originals/25/e2/a4/25e2a496c8204acd1e5c459d86d905e4.gif">
+  	  </div> 
+	  
+ </div> 
+
+ 
+<script type="text/javascript">
+	  
+	    let userNameGet=document.getElementById("userNameHtml");
+	    let userPhoneGet=document.getElementById("userNumberHtml");
+	    let userEmailGet=document.getElementById("userEmailHtml");
+	    let userPassGet=document.getElementById("userPassHtml");
+	    let userConfirPassGet=document.getElementById("userConfirmPassHtml");
+	    let GetUserErrHtml=document.getElementById("UserErrHtml"); 
+	    let GetPhoneErrHtml=document.getElementById("PhoneErrHtml");
+	    let GetEmailErrHtml=document.getElementById("EmailErrHtml");
+	    let GetPassErrHtml=document.getElementById("PassErrHtml");
+	    let GetConfirmPassErrHtml=document.getElementById("ConfirmPassErrHtml");
+	    let GetSubmitErrHtml=document.getElementById("subErrorHtml");
+	    let imageVi=document.querySelector(".imageDiv");
+
+    
+     function validateName(){
+     	   if(userNameGet.value.length==0){
+                GetUserErrHtml.innerHTML="UserName is required";
+                userNameGet.style.border="2px solid red"; 
+                 GetUserErrHtml.style.color="red";
+                 imageVi.visibility="visible"; 
+                return false;
+           }   
+                GetUserErrHtml.innerHTML="valid"; 
+                GetUserErrHtml.style.color="green"; 
+                userNameGet.style.border="2px solid green";
+                return true; 
+     }
+    
+     function validatePhone(){
+     	    if(userPhoneGet.value.length==0){
+                PhoneErrHtml.innerHTML="Phone No field is mandatory";
+                userPhoneGet.style.border="2px solid red"; 
+                 return false;
+               } 
+
+     	   if(userPhoneGet.value.length!==10){
+                PhoneErrHtml.innerHTML="Phone No should have 10 digits";
+                userPhoneGet.style.border="2px solid red"; 
+                 PhoneErrHtml.style.color="red";
+                 return false;
+               } 
+              PhoneErrHtml.innerHTML="valid";
+               PhoneErrHtml.style.color="green"; 
+               userPhoneGet.style.border="2px solid green"; 
+              return true; 
+     }
+
+      function validateEmail(){
+     	    if(userEmailGet.value.length==0){
+                EmailErrHtml.innerHTML="Email field is mandatory";
+                userEmailGet.style.border="2px solid red";
+                EmailErrHtml.style.color="red";  
+                 return false;
+               }  
+              EmailErrHtml.innerHTML="valid";
+              EmailErrHtml.style.color="green"; 
+              userEmailGet.style.border="2px solid green";
+              return true; 
+     }
+
+     function validatePass(){
+     	    if(userPassGet.value.length==0){
+                GetPassErrHtml.innerHTML="Please Enter Password";
+                userPassGet.style.border="2px solid red";
+                GetPassErrHtml.style.color="red";  
+                 return false;
+               }  
+              GetPassErrHtml.innerHTML="valid";
+              GetPassErrHtml.style.color="green"; 
+              userPassGet.style.border="2px solid green";
+              return true; 
+     }
+
+       function validateConfirmPass(){
+       	        let a=userPassGet.value; 
+                let b=userConfirPassGet.value; 
+                let g; 
+                if(a.localeCompare(b)==0){ 
+                 ConfirmPassErrHtml.innerHTML="your password is same as above";
+                  ConfirmPassErrHtml.style.color="green";
+                 return true;
+                }
+                else{
+                 ConfirmPassErrHtml.innerHTML="your password is not same as above";
+                 ConfirmPassErrHtml.style.color="red"; 
+                 return false;
+                }
+                
+        }
+ 
+
+   
+    function validateForm(){
+    	if(!validateName() || !validatePhone() || !validateEmail() || !validatePass() || !validateConfirmPass()){
+            GetSubmitErrHtml.innerHTML="please fill all the fields";
+            return false;
+    	}
+    	return true
+    }
+
+
+
+var car=[2,4,1,4,20];
+
+var total=0;
+
+for(var  m=0;m<car.length;m++){
+  total=total+car[m];
+
+}
+ console.log(total)
+ 
+ 
+ 
+
+
+</script>
+
+
+</body>
+</html>
